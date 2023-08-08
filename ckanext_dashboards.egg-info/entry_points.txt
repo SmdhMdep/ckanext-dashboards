@@ -1,0 +1,7 @@
+
+        [ckan.plugins]
+        dashboards=ckanext.dashboards.plugin:DashboardsPlugin
+
+        [babel.extractors]
+        ckan = ckan.lib.extract:extract_ckan
+    

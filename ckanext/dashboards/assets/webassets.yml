@@ -1,0 +1,4 @@
+dashboard-js:
+  output: ckanext-dashboards/%(version)s-dashboard.js
+  contents:
+  - dashboard.js

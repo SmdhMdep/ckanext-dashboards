@@ -1,0 +1,14 @@
+{% ckan_extends %}
+
+{% block header_account_logged %}
+  {{ super() }}
+
+  <li>
+    <a href="{{ h.url_for(controller='dashboards', action='formdashboards') }}" title="{{ _('Dashboard settings') }}">
+      <i class="fa fa-gavel" aria-hidden="true"></i>
+      <span class="text">{{ _('Dashboard') }}</span>
+    </a>
+  </li>
+        
+{% endblock %}
+      

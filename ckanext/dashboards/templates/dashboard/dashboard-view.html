@@ -1,0 +1,63 @@
+{% extends "dashboard/base.html" %}
+{% import 'macros/form.html' as form %}
+
+{% set data = data or {} %}
+{% set data1 = data or {} %}
+{% set data2 = data or {} %}
+{% set errors = errors or {} %}
+
+{% block primary_content_inner %}
+  <table class="table table-chunky table-bordered table-striped">
+      <thead>
+      <tr>
+          <th>{{ _('dashboard Name') }}</th>
+          <th>{{ _('Type') }}</th>
+          <th>{{ _('SME') }}</th>
+          <th>{{ _('Staus') }}</th>
+          <th class="metric">{{ _('Delete') }}</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for dashboard in h.get_dashboards() %}
+        <tr>
+          <td>
+            <h3>{{ dashboard.dashboard_Id }}</h2>
+          </td>
+          <td> 
+            <P>{{ dashboard.dashboard_Type_Id }}</P>
+          </td>
+          <td> 
+            <P>{{ dashboard.SME }}</P>
+          </td>
+          <td> 
+            <P>{{ dashboard.state }}</P>
+          </td>
+          <td class="metric"> 
+            <form id="tags-delete" class="dataset-form dataset-resource-form" method="post" action="/testing" data-module="basic-form resource-form" enctype="multipart/form-data">
+              <P>Pressing this button will instantly delete the dashboard</P>
+              {{ form.hidden('tag', value=dashboard ) }}
+              <button class="btn btn-primary" name="save" value="go-dataset-complete" type="submit" onclick="return confirm('Are you sure you want to permanently delete the ‘{{ tags }}’ tag?')">{{ _('Delete') }}</button> 
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+  </table>
+{% endblock %}
+
+{% block secondary_content %}
+  <div class="module module-narrow module-shallow">
+    <h2 class="module-heading">
+      <i class="fa fa-info-circle"></i>
+      {{ _('Administer CKAN') }}
+    </h2>
+    <div class="module-content">
+
+      {% set docs_url = "http://docs.ckan.org/en/{0}/sysadmin-guide.html".format(g.ckan_doc_version) %}
+      {% trans %}
+        <p>As a sysadmin user you have full control over this CKAN instance. Proceed with care!</p>
+        <p>For guidance on using sysadmin features, see the CKAN  <a href="{{ docs_url }}" target="_blank">sysadmin guide</a></p>
+      {% endtrans %}
+    </div>
+  </div>
+{% endblock %}

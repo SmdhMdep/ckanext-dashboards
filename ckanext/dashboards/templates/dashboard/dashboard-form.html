@@ -1,0 +1,55 @@
+{% extends "dashboard/base.html" %}
+
+{% set actionAddDashboard = "/dashboard/add" %}
+
+{% block primary_content_inner %}
+    <form id="Dashboard-add" class="dataset-form dataset-resource-form" method="post" action="{{ actionAddDashboard }}" data-module="basic-form resource-form" enctype="multipart/form-data">
+      
+      <label class="control-label" for="field-tags">{{ _("Username") }}</label> <br>   
+      <input class="control-full" type="text" id="Username" name="Username"><br>
+      
+      <br>
+      <label class="control-label" for="field-tags">{{ _("Organisation") }}</label> <br>   
+      <input class="control-full" type="text" id="organizationName" name="organizationName"><br>
+
+      <!-- <select id="OrganisationName" name="OrganisationName" data-module="autocomplete">
+          {% for Organisation in h.get_organisations()  %}
+            <option value="{{ Organisation }}">{{ Organisation }}</option>
+          {% endfor %}
+      </select> -->
+
+      <br>
+      <label class="control-label" for="field-tags">{{ _("Dataset") }}</label> <br>   
+      <input class="control-full" type="text" id="datasetName" name="datasetName"> <br>
+
+      <!-- <select id="DatasetName" name="DatasetName" data-module="autocomplete">
+          {% for Dataset in h.get_datasets()  %}
+            <option value="{{ Dataset }}">{{ Dataset }}</option>
+          {% endfor %}
+      </select> -->
+
+      <br>
+      <label class="control-label" for="field-tags">{{ _("URL") }}</label> <br>   
+      <input class="control-full" type="text" id="URL" name="URL"> <br>
+
+      <br>
+      <button class="btn btn-primary" name="Dashboard" value="go-dataset-complete" type="submit">{{ _('Add') }}</button>
+    </form>
+{% endblock %}
+
+{% block secondary_content %}
+  <div class="module module-narrow module-shallow">
+    <h2 class="module-heading">
+      <i class="fa fa-info-circle"></i>
+      {{ _('Administer CKAN') }}
+    </h2>
+    <div class="module-content">
+
+      {% set docs_url = "http://docs.ckan.org/en/{0}/sysadmin-guide.html".format(g.ckan_doc_version) %}
+      {% trans %}
+        <p>As a sysadmin user you have full control over this CKAN instance. Proceed with care!</p>
+        <p>For guidance on using sysadmin features, see the CKAN  <a href="{{ docs_url }}" target="_blank">sysadmin guide</a></p>
+      {% endtrans %}
+    </div>
+  </div>
+{% endblock %}
